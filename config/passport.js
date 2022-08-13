@@ -1,8 +1,11 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const mongoose = require('mongoose')
-require('dotenv').config()
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
+
+if (process.env.NODE_ENV === 'development') {
+    require('dotenv').config()
+}
 
 module.exports = handleGoogleReq = (passport) => {
     passport.use(new GoogleStrategy({
